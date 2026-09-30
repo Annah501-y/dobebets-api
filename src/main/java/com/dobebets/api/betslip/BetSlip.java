@@ -116,4 +116,8 @@ public class BetSlip {
     public List<Prediction> getPredictions() {
         return predictions;
     }
+
+    public void publish(){
+        this.status = BetSlipStatus.PUBLISHED;
+    }
 }
