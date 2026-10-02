@@ -5,7 +5,7 @@ import com.dobebets.api.prediction.PredictionRepository;
 import com.dobebets.api.prediction.PredictionStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.List;
 import java.math.BigDecimal;
 
 /**
@@ -138,4 +138,13 @@ public class BetSlipService {
                 slip.publish();
                 return betSlipRepository.save(slip);
         }
+
+            /**
+     * Retrieves published mkekas for the public catalog.
+     */
+    @Transactional(readOnly = true)
+    public List<BetSlip> listPublished() {
+        return betSlipRepository.findByStatusOrderByIdDesc(
+                BetSlipStatus.PUBLISHED);
+    }
 }
